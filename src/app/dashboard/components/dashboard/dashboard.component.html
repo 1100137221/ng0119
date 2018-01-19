@@ -1,0 +1,44 @@
+<mat-toolbar color="primary" class="demo-app-header">
+  <button mat-icon-button (click)="sideNav.toggle()">
+    <mat-icon>{{ sideNav.opened ? 'close' : 'menu' }}</mat-icon>
+  </button>
+
+  <span>IT鐵人賽－Angular Material Demo</span>
+
+  <!-- 在這之後的都會被推到右邊去 -->
+  <span class="toolbar-seprator"></span>
+
+  <button mat-icon-button>
+    <mat-icon>message</mat-icon>
+  </button>
+  <button mat-icon-button>
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container class="demo-app-container">
+  <mat-sidenav #sideNav class="demo-app-sidenav" mode="over" (opened)="opened()" (closed)="closed()" fixedInViewport="true" fixedTopGap="20" fixedBottomGap="20">
+    <mat-nav-list>
+      <h3 matSubheader>示範用頁面</h3>
+      <a [routerLink]="['/', 'dashboard', 'survey']" mat-list-item>問卷調查</a>
+      <a [routerLink]="['/', 'dashboard', 'blog']" mat-list-item>部落格</a>
+      <a [routerLink]="['/', 'dashboard', 'inbox']" mat-list-item>收件夾</a>
+      <mat-divider></mat-divider>
+      <!-- 另外一組選單 -->
+      <h3 matSubheader>其他頁面</h3>
+      <a [routerLink]="['/']" mat-list-item>首頁</a>
+      <a [routerLink]="['/']" mat-list-item>Google</a>
+      <a [routerLink]="['/']" mat-list-item>Facebook</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav #sideNavEnd opened="true" mode="side" position="end">
+    <div>我是右邊選單</div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <button mat-raised-button (click)="toggleSideNav(sideNav)">切換選單狀態</button>
+
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
